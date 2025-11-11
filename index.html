@@ -1,11 +1,288 @@
-<!DOCTYPE html>
-<html lang="pt">
-<head>
-  <meta charset="UTF-8">
-  <title>Hello World</title>
-</head>
-<body>
-  <h1>Hello World!</h1>
-  <p>O meu primeiro site no GitHub Pages 🚀</p>
-</body>
-</html>
+import React from "react";
+import { motion } from "framer-motion";
+import { Github, Linkedin, Mail, MapPin, Briefcase, GraduationCap, Award, Code2 } from "lucide-react";
+
+// ---
+// Personal website — English version
+// Inspired by nelsonbn.com (simple structure: Home / About / Experience / Projects / Certificates / Contact)
+// ---
+
+const NAV = [
+  { id: "home", label: "Home" },
+  { id: "about", label: "About" },
+  { id: "experience", label: "Experience" },
+  { id: "projects", label: "Projects" },
+  { id: "certs", label: "Certificates" },
+  { id: "contact", label: "Contact" },
+];
+
+const EXPERIENCE = [
+  {
+    company: "Kaizen Gaming (Betano / Stoiximan)",
+    role: ".NET Backend Engineer (mid-level)",
+    period: "2018 — Present",
+    location: "Lisbon, Portugal (Hybrid)",
+    bullets: [
+      "Internal services: Dormancy, Customer Limits, Revenue Data Preparation, AML/KYC",
+      "Stack: .NET 8/9, SQL Server (SPs, indexes, partitioning), RabbitMQ, Kubernetes/OpenShift",
+      "Focus on reliability, observability, and CI/CD using GitLab",
+    ],
+  },
+  {
+    company: "Personal Projects (GymAccess)",
+    role: "Founder & Backend Developer (.NET 9)",
+    period: "2025 — Present",
+    location: "Lisbon, Portugal",
+    bullets: [
+      "MVP: gym day‑pass sales platform with QR code entry (frontend in Vue)",
+      "Layered architecture (Core/Infrastructure/Integrations), SQLite, Stripe (simulated)",
+    ],
+  },
+];
+
+const PROJECTS = [
+  {
+    name: "GymAccessBackend",
+    summary:
+      "Minimal .NET 9 API for gym day‑pass payments and QR code generation.",
+    tags: [".NET 9", "Minimal APIs", "SQLite", "Stripe (mock)", "QRCoder"],
+    link: "#",
+  },
+  {
+    name: "Customer Limits Lab",
+    summary:
+      "Experiments with regulatory limits (BE/PT/CZ), KPIs, and data pipelines.",
+    tags: ["SQL Server", "CTEs", "Partitioning", "Dapper", "RabbitMQ"],
+    link: "#",
+  },
+];
+
+const CERTS = [
+  { name: "TODO: Microsoft AZ‑900 (Example)", org: "Microsoft", year: "20XX", url: "#" },
+];
+
+const EDUCATION = [
+  { degree: "Bachelor’s Degree (TODO)", school: "University (TODO)", period: "20XX — 20XX" },
+];
+
+export default function Portfolio() {
+  return (
+    <div className="min-h-screen bg-neutral-950 text-neutral-100">
+      <header className="sticky top-0 z-50 backdrop-blur bg-neutral-950/70 border-b border-neutral-800">
+        <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+          <a href="#home" className="font-semibold tracking-tight">Alexandre Reis</a>
+          <nav className="hidden md:flex gap-6 text-sm">
+            {NAV.map((item) => (
+              <a key={item.id} href={`#${item.id}`} className="hover:text-white/90 text-neutral-300">
+                {item.label}
+              </a>
+            ))}
+          </nav>
+          <div className="flex items-center gap-3">
+            <a
+              href="https://github.com/alexandremreis"
+              target="_blank"
+              rel="noreferrer"
+              className="p-2 rounded-lg hover:bg-neutral-800"
+              aria-label="GitHub"
+            >
+              <Github size={18} />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/alexandremmreis/"
+              target="_blank"
+              rel="noreferrer"
+              className="p-2 rounded-lg hover:bg-neutral-800"
+              aria-label="LinkedIn"
+            >
+              <Linkedin size={18} />
+            </a>
+            <a
+              href="mailto:alexandre@example.com"
+              className="p-2 rounded-lg hover:bg-neutral-800"
+              aria-label="Email"
+            >
+              <Mail size={18} />
+            </a>
+          </div>
+        </div>
+      </header>
+
+      {/* Hero */}
+      <section id="home" className="max-w-6xl mx-auto px-4 py-16">
+        <div className="grid md:grid-cols-2 gap-10 items-center">
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
+              Backend Engineer in .NET <span className="text-neutral-400">— Lisbon</span>
+            </h1>
+            <p className="mt-5 text-neutral-300 max-w-xl">
+              I build reliable, scalable .NET services for gaming and fintech.
+              I enjoy transforming complex requirements into simple, observable, and maintainable systems.
+            </p>
+            <div className="flex flex-wrap gap-3 mt-6 text-sm">
+              {[
+                ".NET 8/9",
+                "SQL Server",
+                "RabbitMQ",
+                "Kubernetes/OpenShift",
+                "GitLab CI/CD",
+              ].map((t) => (
+                <span key={t} className="bg-neutral-800/70 border border-neutral-700 px-3 py-1 rounded-full">
+                  {t}
+                </span>
+              ))}
+            </div>
+            <div className="mt-8 flex gap-3">
+              <a href="#projects" className="px-4 py-2 rounded-xl bg-white text-neutral-900 font-medium">View Projects</a>
+              <a href="#contact" className="px-4 py-2 rounded-xl bg-neutral-800 border border-neutral-700">Contact</a>
+            </div>
+          </motion.div>
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}>
+            <div className="aspect-square rounded-3xl bg-gradient-to-br from-neutral-800 to-neutral-900 border border-neutral-700 flex items-center justify-center">
+              <div className="text-center p-6">
+                <div className="mx-auto mb-4 w-24 h-24 rounded-2xl bg-neutral-700/40 flex items-center justify-center">
+                  <Code2 />
+                </div>
+                <p className="text-neutral-300 text-sm">
+                  Minimal portfolio inspired by <span className="underline decoration-neutral-600">nelsonbn.com</span>.
+                </p>
+                <p className="text-neutral-500 text-xs mt-2">Replace with your photo when ready.</p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* About */}
+      <section id="about" className="max-w-6xl mx-auto px-4 py-14 border-t border-neutral-800">
+        <div className="grid md:grid-cols-3 gap-8">
+          <div>
+            <h2 className="text-xl font-semibold">About</h2>
+            <p className="mt-2 text-neutral-400 text-sm">Who I am and what drives me</p>
+          </div>
+          <div className="md:col-span-2 text-neutral-300 leading-relaxed">
+            <p>
+              I'm Alexandre, a backend‑focused software engineer specializing in .NET.
+              I work daily with regulatory compliance (limits, KYC) and data pipelines.
+            </p>
+            <p className="mt-3">
+              Outside of work, I develop <span className="font-medium">GymAccess</span>, an MVP that enables day‑pass sales
+              for gyms with QR code entry. I also train at the gym on weekends.
+            </p>
+            <div className="flex items-center gap-2 mt-4 text-neutral-400 text-sm">
+              <MapPin size={16} /> Lisbon, Portugal
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Experience */}
+      <section id="experience" className="max-w-6xl mx-auto px-4 py-14 border-t border-neutral-800">
+        <div className="grid md:grid-cols-3 gap-8">
+          <div>
+            <h2 className="text-xl font-semibold flex items-center gap-2"><Briefcase size={18}/> Experience</h2>
+            <p className="mt-2 text-neutral-400 text-sm">Recent years</p>
+          </div>
+          <div className="md:col-span-2 space-y-6">
+            {EXPERIENCE.map((job, i) => (
+              <motion.div key={i} initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.35 }} className="rounded-2xl border border-neutral-800 bg-neutral-900/40 p-5">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <div className="font-medium">{job.role} · {job.company}</div>
+                  <div className="text-sm text-neutral-400">{job.period}</div>
+                </div>
+                <div className="text-sm text-neutral-400 mt-1">{job.location}</div>
+                <ul className="mt-3 space-y-2 text-sm text-neutral-300 list-disc pl-5">
+                  {job.bullets.map((b, j) => <li key={j}>{b}</li>)}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Projects */}
+      <section id="projects" className="max-w-6xl mx-auto px-4 py-14 border-t border-neutral-800">
+        <div className="grid md:grid-cols-3 gap-8">
+          <div>
+            <h2 className="text-xl font-semibold">Projects</h2>
+            <p className="mt-2 text-neutral-400 text-sm">Selected work</p>
+          </div>
+          <div className="md:col-span-2 grid sm:grid-cols-2 gap-6">
+            {PROJECTS.map((p, i) => (
+              <a key={i} href={p.link} className="group rounded-2xl border border-neutral-800 bg-neutral-900/40 p-5 hover:border-neutral-700">
+                <div className="flex items-center gap-2 text-sm text-neutral-400"><Code2 size={16}/> Project</div>
+                <div className="mt-2 font-medium text-lg group-hover:underline">{p.name}</div>
+                <p className="mt-2 text-sm text-neutral-300">{p.summary}</p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {p.tags.map((t) => (
+                    <span key={t} className="text-xs bg-neutral-800/70 border border-neutral-700 px-2 py-1 rounded-full">{t}</span>
+                  ))}
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Certificates & Education */}
+      <section id="certs" className="max-w-6xl mx-auto px-4 py-14 border-t border-neutral-800">
+        <div className="grid md:grid-cols-3 gap-8">
+          <div>
+            <h2 className="text-xl font-semibold flex items-center gap-2"><Award size={18}/> Certificates</h2>
+            <p className="mt-2 text-neutral-400 text-sm">Update as needed</p>
+          </div>
+          <div className="md:col-span-2">
+            <ul className="space-y-3">
+              {CERTS.map((c, i) => (
+                <li key={i} className="rounded-xl border border-neutral-800 bg-neutral-900/40 p-4 flex items-center justify-between">
+                  <div>
+                    <div className="font-medium">{c.name}</div>
+                    <div className="text-sm text-neutral-400">{c.org} · {c.year}</div>
+                  </div>
+                  <a href={c.url} className="text-sm underline text-neutral-300">View</a>
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-10">
+              <h3 className="text-lg font-semibold flex items-center gap-2"><GraduationCap size={18}/> Education</h3>
+              <ul className="mt-3 space-y-3">
+                {EDUCATION.map((e, i) => (
+                  <li key={i} className="rounded-xl border border-neutral-800 bg-neutral-900/40 p-4">
+                    <div className="font-medium">{e.degree}</div>
+                    <div className="text-sm text-neutral-400">{e.school} · {e.period}</div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact */}
+      <section id="contact" className="max-w-6xl mx-auto px-4 py-14 border-t border-neutral-800">
+        <div className="grid md:grid-cols-3 gap-8">
+          <div>
+            <h2 className="text-xl font-semibold">Contact</h2>
+            <p className="mt-2 text-neutral-400 text-sm">Say hello 👋</p>
+          </div>
+          <div className="md:col-span-2">
+            <div className="rounded-2xl border border-neutral-800 bg-neutral-900/40 p-6">
+              <p className="text-neutral-300">Open to collaborations, projects, and knowledge sharing.</p>
+              <div className="mt-4 flex flex-wrap gap-3 text-sm">
+                <a href="mailto:alexandre@example.com" className="px-4 py-2 rounded-xl bg-white text-neutral-900 font-medium flex items-center gap-2"><Mail size={16}/> Send Email</a>
+                <a href="https://www.linkedin.com/in/alexandremmreis/" target="_blank" rel="noreferrer" className="px-4 py-2 rounded-xl bg-neutral-800 border border-neutral-700 flex items-center gap-2"><Linkedin size={16}/> LinkedIn</a>
+              </div>
+              <p className="text-xs text-neutral-500 mt-4">Replace with your real email address.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer className="border-t border-neutral-800 py-8 text-center text-sm text-neutral-500">
+        © {new Date().getFullYear()} Alexandre Reis. Built with React + Tailwind.
+      </footer>
+    </div>
+  );
+}
+
