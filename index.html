@@ -19,20 +19,82 @@
 <body class="bg-gray-900 text-gray-100 font-sans">
 
     <!-- NAV -->
-    <nav class="flex justify-between items-center px-8 py-6 bg-gray-900/70 backdrop-blur sticky top-0 border-b border-gray-800">
-        <div class="flex items-center gap-3">
-            <img src="assets/logo.png" alt="Alexandre Reis logo" class="w-10 h-10 rounded-sm" />
-            <h1 class="text-xl font-semibold">Alexandre Reis</h1>
+    <nav class="bg-gray-900/70 backdrop-blur sticky top-0 border-b border-gray-800">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-3">
+                    <a href="#" class="flex items-center gap-3">
+                        <img src="assets/logo.png" alt="Alexandre Reis logo" class="w-10 h-10 rounded-sm" />
+                        <h1 class="text-xl font-semibold">Alexandre Reis</h1>
+                    </a>
+                </div>
+
+                <!-- Desktop links -->
+                <div class="hidden md:flex space-x-6 text-gray-300">
+                    <a href="#about" class="hover:text-white">About</a>
+                    <a href="#education" class="hover:text-white">Education</a>
+                    <a href="#experience" class="hover:text-white">Experience</a>
+                    <a href="#skills" class="hover:text-white">Skills</a>
+                    <a href="#projects" class="hover:text-white">Projects</a>
+                    <a href="#certificates" class="hover:text-white">Certificates</a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="nav-toggle" aria-controls="mobile-menu" aria-expanded="false" class="inline-flex items-center justify-center p-2 rounded-md text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none">
+                        <svg id="icon-open" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg id="icon-close" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
         </div>
-        <div class="space-x-6 text-gray-300">
-            <a href="#about" class="hover:text-white">About</a>
-            <a href="#education" class="hover:text-white">Education</a>
-            <a href="#experience" class="hover:text-white">Experience</a>
-            <a href="#skills" class="hover:text-white">Skills</a>
-            <a href="#projects" class="hover:text-white">Projects</a>
-            <a href="#certificates" class="hover:text-white">Certificates</a>
+
+        <!-- Mobile menu, show/hide with button -->
+        <div id="mobile-menu" class="hidden md:hidden px-4 pb-4">
+            <div class="space-y-2">
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-800">About</a>
+                <a href="#education" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-800">Education</a>
+                <a href="#experience" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-800">Experience</a>
+                <a href="#skills" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-800">Skills</a>
+                <a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-800">Projects</a>
+                <a href="#certificates" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-800">Certificates</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-800">Contact</a>
+            </div>
         </div>
     </nav>
+
+    <script>
+        (function () {
+            const btn = document.getElementById('nav-toggle');
+            const menu = document.getElementById('mobile-menu');
+            const iconOpen = document.getElementById('icon-open');
+            const iconClose = document.getElementById('icon-close');
+            if (!btn || !menu) return;
+            btn.addEventListener('click', () => {
+                const open = menu.classList.toggle('hidden') === false;
+                btn.setAttribute('aria-expanded', open.toString());
+                if (open) {
+                    iconOpen.classList.add('hidden');
+                    iconClose.classList.remove('hidden');
+                } else {
+                    iconOpen.classList.remove('hidden');
+                    iconClose.classList.add('hidden');
+                }
+            });
+
+            // Close mobile menu when clicking a link
+            menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+                menu.classList.add('hidden');
+                btn.setAttribute('aria-expanded', 'false');
+                iconOpen.classList.remove('hidden');
+                iconClose.classList.add('hidden');
+            }));
+        })();
+    </script>
 
     <!-- HERO -->
     <section class="min-h-screen flex flex-col justify-center items-center text-center px-6">
