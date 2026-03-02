@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Posts — Alexandre Reis</title>
+    <link rel="icon" href="assets/logo_black.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Offset anchored elements so sticky header doesn't cover them.
+           Adjust --header-offset if your header height changes. */
+        :root { --header-offset: 4.5rem; }
+        section[id], h2[id], h3[id] {
+            scroll-margin-top: calc(var(--header-offset) + 0.5rem);
+        }
+
+        /* Posts typography tweaks for readability */
+        #posts .post-card {
+            background-color: #1f2937;
+            border: 1px solid #374151;
+            border-radius: 1rem;
+            padding: 1.75rem;
+        }
+        #posts .post-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #f3f4f6;
+        }
+        #posts .post-meta {
+            margin-top: 0.25rem;
+            font-size: 0.875rem;
+            color: #9ca3af;
+        }
+        #posts .post-content p {
+            margin-top: 1rem;
+            color: #d1d5db;
+            line-height: 1.8;
+            font-size: 1.125rem;
+        }
+        #posts .post-content h4 {
+            margin-top: 1.75rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #f3f4f6;
+        }
+        #posts .post-content img {
+            margin-top: 1.5rem;
+            width: 100%;
+            border-radius: 0.75rem;
+            border: 1px solid #374151;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-900 text-gray-100 font-sans">
+
+    <!-- NAV -->
+    <nav class="bg-gray-900/70 backdrop-blur sticky top-0 border-b border-gray-800">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-3">
+                    <a href="index.html" class="flex items-center gap-3">
+                        <img src="assets/logo.png" alt="Alexandre Reis logo" class="w-10 h-10 rounded-sm" />
+                        <h1 class="text-xl font-semibold">Alexandre Reis</h1>
+                    </a>
+                </div>
+
+                <!-- Desktop links -->
+                <div class="hidden md:flex space-x-6 text-gray-300">
+                    <a href="index.html#about" class="hover:text-white">About</a>
+                    <a href="index.html#education" class="hover:text-white">Education</a>
+                    <a href="index.html#experience" class="hover:text-white">Experience</a>
+                    <a href="index.html#skills" class="hover:text-white">Skills</a>
+                    <a href="index.html#projects" class="hover:text-white">Projects</a>
+                    <a href="index.html#certificates" class="hover:text-white">Certificates</a>
+                    <a href="posts.html" class="text-white">Posts</a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="nav-toggle" aria-controls="mobile-menu" aria-expanded="false" class="inline-flex items-center justify-center p-2 rounded-md text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none">
+                        <svg id="icon-open" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg id="icon-close" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu, show/hide with button -->
+        <div id="mobile-menu" class="hidden md:hidden px-4 pb-4">
+            <div class="space-y-2">
+                <a href="index.html#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-800">About</a>
+                <a href="index.html#education" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-800">Education</a>
+                <a href="index.html#experience" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-800">Experience</a>
+                <a href="index.html#skills" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-800">Skills</a>
+                <a href="index.html#projects" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-800">Projects</a>
+                <a href="index.html#certificates" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-800">Certificates</a>
+                <a href="posts.html" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-800">Posts</a>
+            </div>
+        </div>
+    </nav>
+
+    <script>
+        (function () {
+            const btn = document.getElementById('nav-toggle');
+            const menu = document.getElementById('mobile-menu');
+            const iconOpen = document.getElementById('icon-open');
+            const iconClose = document.getElementById('icon-close');
+            if (!btn || !menu) return;
+            btn.addEventListener('click', () => {
+                const open = menu.classList.toggle('hidden') === false;
+                btn.setAttribute('aria-expanded', open.toString());
+                if (open) {
+                    iconOpen.classList.add('hidden');
+                    iconClose.classList.remove('hidden');
+                } else {
+                    iconOpen.classList.remove('hidden');
+                    iconClose.classList.add('hidden');
+                }
+            });
+
+            // Close mobile menu when clicking a link
+            menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+                menu.classList.add('hidden');
+                btn.setAttribute('aria-expanded', 'false');
+                iconOpen.classList.remove('hidden');
+                iconClose.classList.add('hidden');
+            }));
+        })();
+    </script>
+
+    <!-- HERO -->
+    <section class="pt-16 pb-10 px-6">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold">Posts</h2>
+            <p class="text-gray-300 mt-3 max-w-2xl">
+                Notes, reflections, and long-form write-ups on backend engineering and learning.
+            </p>
+        </div>
+    </section>
+
+    <!-- Posts -->
+    <section id="posts" class="px-6 pb-20 max-w-5xl mx-auto">
+        <div class="space-y-8">
+            <div class="post-card">
+                <div>
+                    <div class="post-title">Advent of Code Commitment</div>
+                    <div class="post-meta">March 2nd 2026</div>
+                </div>
+
+                <div class="post-content max-w-3xl">
+                    <p>
+                        I know it is not advent but wanted to practice my brain problem solving section because 
+                        it is getting rusty since finishing college. And I’m afraid only the ones with a sharp 
+                        problem solving mentality and a good abstract thinking will be able to survive into the 
+                        AI era, adapting quickly to new circumstances and tools.
+                        So lets start by the foundations that is problem solving on code with C# and what is the 
+                        best way to do that then the Advent of Code challenge? There is also Exercism but I found 
+                        the AoC more challenging.
+                    </p>
+
+                    <p>
+                        I started by doing a console application where I could pass the day I wanted to run and if 
+                        I wanted to run the demo input or the final input. Went this way to avoid commenting and 
+                        uncommenting code each time I wanted to run the application only needing to add a new case 
+                        in a switch for each new day I’m developing:
+                    </p>
+                    <img src="assets/switch_case_02_03_2026.png" alt="Switch case for Advent of Code" />
+
+                    <h4>Unit Tests</h4>
+                    <p>
+                        Since first we want to solve the problem and then after being 3 days thinking how to 
+                        solve it and reach a solution we see it takes so much time and certainly somebody in 
+                        the world took 1 percentile of our resources to solve the problem I’m pretty 
+                        sure we can improve our solution but to avoid breaking it nothing better then doing 
+                        unit tests so in the future when we improve the solutions we won’t break anything. 
+                        Thinking about that, need to check how to run the unit tests automatically 
+                        when trying to do a commit (not sure if is possible), i know we can do it on a merge request.
+                    </p>
+
+                    <p>
+                        This week I purpose solving one exercise each day. Today is March 2nd so on March 9th I'm 
+                        expecting to have solved all the exercises, kinda hard because the problems are getting 
+                        harder but we are here to push ourselves beyond our limits , right? So we can improve.. 
+                        Lets do it!
+                    </p>
+
+                    <p>Stay Focused,</p>
+                    <p>A. Reis</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-6 text-gray-500 border-t border-gray-800">
+        <div class="max-w-5xl mx-auto w-full flex items-center justify-between px-6">
+            <div>
+                <span>© <span id="current-year"></span> Alexandre Reis. All rights reserved.</span>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <a href="mailto:alexmmreis@gmail.com" aria-label="Email Alexandre Reis" class="p-3 bg-gray-800 border border-gray-700 rounded-xl hover:bg-gray-700 transition">
+                    <svg class="w-6 h-6 text-blue-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8.5v7A2.5 2.5 0 005.5 18h13a2.5 2.5 0 002.5-2.5v-7A2.5 2.5 0 0018.5 6h-13A2.5 2.5 0 003 8.5z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 8l-9 6-9-6" />
+                    </svg>
+                    <span class="sr-only">Email alexmmreis@gmail.com</span>
+                </a>
+
+                <a href="https://www.linkedin.com/in/alexandremmreis/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Alexandre Reis" class="p-3 bg-gray-800 border border-gray-700 rounded-xl hover:bg-gray-700 transition">
+                    <svg class="w-6 h-6 text-blue-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.797-1.75-1.778 0-.98.784-1.778 1.75-1.778s1.75.798 1.75 1.778c0 .981-.784 1.778-1.75 1.778zm13.5 11.268h-3v-5.604c0-1.337-.027-3.059-1.865-3.059-1.865 0-2.151 1.455-2.151 2.958v5.705h-3v-10h2.879v1.367h.041c.401-.761 1.379-1.562 2.84-1.562 3.037 0 3.6 2 3.6 4.597v5.598z" />
+                    </svg>
+                    <span class="sr-only">LinkedIn profile</span>
+                </a>
+
+                <a href="https://github.com/alexandremreis" target="_blank" rel="noopener noreferrer" aria-label="GitHub Alexandre Reis" class="p-3 bg-gray-800 border border-gray-700 rounded-xl hover:bg-gray-700 transition">
+                    <svg class="w-6 h-6 text-blue-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M12 .5C5.648.5.5 5.648.5 12c0 5.084 3.292 9.384 7.865 10.9.575.106.785-.25.785-.558 0-.275-.01-1.003-.015-1.968-3.2.695-3.877-1.544-3.877-1.544-.523-1.328-1.277-1.682-1.277-1.682-1.044-.714.08-.7.08-.7 1.155.081 1.763 1.187 1.763 1.187 1.025 1.756 2.69 1.25 3.345.955.104-.742.402-1.25.731-1.538-2.554-.29-5.238-1.277-5.238-5.682 0-1.254.448-2.279 1.184-3.083-.119-.29-.513-1.456.112-3.035 0 0 .965-.309 3.162 1.18a10.98 10.98 0 012.876-.387c.976.004 1.96.132 2.876.387 2.196-1.49 3.159-1.18 3.159-1.18.628 1.579.235 2.745.116 3.035.738.804 1.183 1.829 1.183 3.083 0 4.416-2.69 5.388-5.254 5.672.413.354.78 1.054.78 2.123 0 1.534-.014 2.771-.014 3.148 0 .31.207.67.789.557C20.708 21.381 24 17.083 24 12c0-6.352-5.148-11.5-12-11.5z" clip-rule="evenodd" />
+                    </svg>
+                    <span class="sr-only">GitHub profile</span>
+                </a>
+            </div>
+        </div>
+
+        <script>
+            (function () {
+                document.getElementById('current-year').textContent = new Date().getFullYear();
+            })();
+        </script>
+    </footer>
+
+</body>
+</html>

@@ -14,41 +14,6 @@
                 scroll-margin-top: calc(var(--header-offset) + 0.5rem);
             }
 
-            /* Posts typography tweaks for readability */
-            #posts .post-card {
-                background-color: #1f2937;
-                border: 1px solid #374151;
-                border-radius: 1rem;
-                padding: 1.75rem;
-            }
-            #posts .post-title {
-                font-size: 1.25rem;
-                font-weight: 600;
-                color: #f3f4f6;
-            }
-            #posts .post-meta {
-                margin-top: 0.25rem;
-                font-size: 0.875rem;
-                color: #9ca3af;
-            }
-            #posts .post-content p {
-                margin-top: 1rem;
-                color: #d1d5db;
-                line-height: 1.8;
-                font-size: 1.125rem;
-            }
-            #posts .post-content h4 {
-                margin-top: 1.75rem;
-                font-size: 1.25rem;
-                font-weight: 600;
-                color: #f3f4f6;
-            }
-            #posts .post-content img {
-                margin-top: 1.5rem;
-                width: 100%;
-                border-radius: 0.75rem;
-                border: 1px solid #374151;
-            }
         </style>
 </head>
 
@@ -73,7 +38,7 @@
                     <a href="#skills" class="hover:text-white">Skills</a>
                     <a href="#projects" class="hover:text-white">Projects</a>
                     <a href="#certificates" class="hover:text-white">Certificates</a>
-                    <a href="#posts" class="hover:text-white">Posts</a>
+                    <a href="posts.html" class="hover:text-white">Posts</a>
                 </div>
 
                 <!-- Mobile menu button -->
@@ -99,7 +64,7 @@
                 <a href="#skills" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-800">Skills</a>
                 <a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-800">Projects</a>
                 <a href="#certificates" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-800">Certificates</a>
-                <a href="#posts" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-800">Posts</a>
+                <a href="posts.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-800">Posts</a>
                 <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-800">Contact</a>
             </div>
         </div>
@@ -303,60 +268,6 @@
         </div>
     </section>
 
-    <!-- Posts -->
-    <section id="posts" class="px-6 py-20 max-w-5xl mx-auto">
-        <h3 class="text-3xl font-bold mb-8">Posts</h3>
-
-        <div class="space-y-8">
-            <div class="post-card">
-                <div>
-                    <div class="post-title">Advent of Code Commitment</div>
-                    <div class="post-meta">March 2nd 2026</div>
-                </div>
-
-                <div class="post-content max-w-3xl">
-                    <p>
-                        I know it is not advent but wanted to practice my brain problem solving section because 
-                        it is getting rusty since finishing college. And I’m afraid only the ones with a sharp 
-                        problem solving mentality and a good abstract thinking will be able to survive into the 
-                        AI era, adapting quickly to new circumstances and tools.
-                        So lets start by the foundations that is problem solving on code with C# and what is the 
-                        best way to do that then the Advent of Code challenge? There is also Exercism but I found 
-                        the AoC more challenging.
-                    </p>
-
-                    <p>
-                        I started by doing a console application where I could pass the day I wanted to run and if 
-                        I wanted to run the demo input or the final input. Went this way to avoid commenting and 
-                        uncommenting code each time I wanted to run the application only needing to add a new case 
-                        in a switch for each new day I’m developing:
-                    </p>
-                    <img src="assets/switch_case_02_03_2026.png" alt="Switch case for Advent of Code" />
-
-                    <h4>Unit Tests</h4>
-                    <p>
-                        Since first we want to solve the problem and then after being 3 days thinking how to 
-                        solve it and reach a solution we see it takes so much time and certainly somebody in 
-                        the world took 1 percentile of our resources to solve the problem I’m pretty 
-                        sure we can improve our solution but to avoid breaking it nothing better then doing 
-                        unit tests so in the future when we improve the solutions we won’t break anything. 
-                        Thinking about that, need to check how to run the unit tests automatically 
-                        when trying to do a commit (not sure if is possible), i know we can do it on a merge request.
-                    </p>
-
-                    <p>
-                        This week I purpose solving one exercise each day. Today is March 2nd so on March 9th I'm 
-                        expecting to have solved all the exercises, kinda hard because the problems are getting 
-                        harder but we are here to push ourselves beyond our limits , right? So we can improve.. 
-                        Lets do it!
-                    </p>
-
-                    <p>Stay Focused,</p>
-                    <p>A. Reis</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- FOOTER -->
     <footer class="py-6 text-gray-500 border-t border-gray-800">
